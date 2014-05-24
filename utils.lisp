@@ -2,7 +2,8 @@
   (:use :cl)
   (:export :split-string-in-chars
            :average
-           :median))
+           :median
+           :compose))
 
 (in-package :fyi)
 
@@ -21,3 +22,15 @@
        (average (list (nth  index elements)
                 (nth (1- index) elements)))
        (nth index elements))))
+
+;;; Functional tools
+
+(defun compose (&rest fns)
+  "Composes several functions to one"
+  (let ((fn1 (car fns))
+        (rest-fns (cdr fns)))
+    #'(lambda (&rest args)
+        (reduce #'(lambda (value fn)
+                    (funcall fn value))
+                rest-fns
+                :initial-value (apply fn1 args)))))
