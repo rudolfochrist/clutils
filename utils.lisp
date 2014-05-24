@@ -3,7 +3,8 @@
   (:export :split-string-in-chars
            :average
            :median
-           :compose))
+           :compose
+           :partial))
 
 (in-package :fyi)
 
@@ -34,3 +35,8 @@
                     (funcall fn value))
                 rest-fns
                 :initial-value (apply fn1 args)))))
+
+(defun partial (fn &rest args)
+  "Partially applies arguments to a function"
+  #'(lambda (&rest more-args)
+      (apply fn (append args more-args))))
