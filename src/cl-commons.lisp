@@ -38,10 +38,10 @@
                 rest-fns
                 :initial-value (apply fn1 args)))))
 
-(defun partial (fn &rest args)
+(defun partial (fn &rest partial-args)
   "Partially applies arguments to a function"
-  #'(lambda (&rest more-args)
-      (apply fn (append args more-args))))
+  #'(lambda (&rest args)
+      (apply fn (append partial-args args))))
 
 (defun flip (fn)
   "Reverses the arguments of a function"
