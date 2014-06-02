@@ -6,7 +6,8 @@
            :median
            :compose
            :partial
-           :flip))
+           :flip
+           :partial-right))
 
 (in-package :cl-commons)
 
@@ -47,3 +48,7 @@
   "Reverses the arguments of a function"
   #'(lambda (&rest args)
       (apply fn (reverse args))))
+
+(defun partial-right (fn &rest partial-args)
+  #'(lambda (&rest args)
+      (apply (flip fn) (append partial-args args))))
