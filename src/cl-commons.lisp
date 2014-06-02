@@ -5,7 +5,8 @@
            :average
            :median
            :compose
-           :partial))
+           :partial
+           :flip))
 
 (in-package :cl-commons)
 
@@ -41,3 +42,8 @@
   "Partially applies arguments to a function"
   #'(lambda (&rest more-args)
       (apply fn (append args more-args))))
+
+(defun flip (fn)
+  "Reverses the arguments of a function"
+  #'(lambda (&rest args)
+      (apply fn (reverse args))))
