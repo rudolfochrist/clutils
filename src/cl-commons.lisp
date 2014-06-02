@@ -1,4 +1,5 @@
-(defpackage fyi
+(in-package :cl-user)
+(defpackage cl-commons
   (:use :cl)
   (:export :split-string-in-chars
            :average
@@ -6,7 +7,7 @@
            :compose
            :partial))
 
-(in-package :fyi)
+(in-package :cl-commons)
 
 (defun split-string-in-chars (string)
   "Splits a string in it's charachters."
