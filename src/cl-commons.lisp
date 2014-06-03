@@ -50,5 +50,4 @@
       (apply fn (reverse args))))
 
 (defun partial-right (fn &rest partial-args)
-  #'(lambda (&rest args)
-      (apply (flip fn) (append partial-args args))))
+  (apply #'partial (flip fn) partial-args))
