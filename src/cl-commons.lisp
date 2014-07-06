@@ -2,6 +2,7 @@
 (defpackage cl-commons
   (:use :cl)
   (:export :split-string-in-chars
+           :string-append
            :average
            :median
            :compose
@@ -14,6 +15,10 @@
 (defun split-string-in-chars (string)
   "Splits a string in it's charachters."
   (map 'list #'identity string))
+
+(defun string-append (&rest args)
+  "Appends strings"
+  (apply (partial #'concatenate 'string) args))
 
 (defun average (elements)
   (/ (apply #'+ elements) (length elements)))
@@ -51,3 +56,4 @@
 
 (defun partial-right (fn &rest partial-args)
   (apply #'partial (flip fn) partial-args))
+
