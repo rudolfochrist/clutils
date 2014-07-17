@@ -3,6 +3,8 @@
   (:use :cl)
   (:export :split-string-in-chars
            :string-append
+           :string-trim-whitespace
+           :string-joins
            :average
            :median
            :compose
@@ -22,6 +24,15 @@
 
 (defun average (elements)
   (/ (apply #'+ elements) (length elements)))
+
+(defun string-trim-whitespace (string)
+  (string-trim '(#\Space #\Tab #\Newline) string))
+
+(defun string-join (list &key (delimiter " "))
+  (string-trim-whitespace (reduce #'(lambda (concatenated current)
+               (concatenate 'string concatenated delimiter (princ-to-string current)))
+           (cdr list)
+           :initial-value (princ-to-string (car list)))))
 
 (defun median (elements)
   "Determines the median of the given elements. Elements MUST be a sorted list."
