@@ -57,6 +57,17 @@
                 (recur (random (1- bound)) numbers)))))
     (recur (random (1- bound)) nil)))
 
+(defun primep (number)
+  "Fermat primality test"
+  (cond 
+    ((= number 1) nil)
+    ((or (= number 2) (= number 3)) t)
+    (t
+     (every #'identity 
+(mapcar #'(lambda (base)
+                  (= 1 (mod (expt base (1- number)) number)))
+              (generate-random-numbers number))))))
+
 ;;; Functional tools
 
 (defun compose (&rest fns)
