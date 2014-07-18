@@ -7,6 +7,7 @@
            :string-joins
            :average
            :median
+           :generate-random-numbers
            :compose
            :partial
            :flip
@@ -42,6 +43,17 @@
        (average (list (nth  index elements)
                 (nth (1- index) elements)))
        (nth index elements))))
+
+(defun generate-random-numbers (bound &key (amount 3))
+  "Generates a list of random number. Each number n is int the range 1 <= n < bound. 
+:amount specifies how many random numbers should be generated"
+  (labels ((recur (current numbers)
+             (cond
+               ((= (length numbers) amount)
+                numbers)
+               (t
+                (recur (random (1- bound)) (cons (1+ current) numbers)))))) ; 1+ to avoid zeros in result list
+    (recur (random (1- bound)) nil)))
 
 ;;; Functional tools
 
