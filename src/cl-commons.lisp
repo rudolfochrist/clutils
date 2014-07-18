@@ -64,9 +64,9 @@
     ((or (= number 2) (= number 3)) t)
     (t
      (every #'identity 
-(mapcar #'(lambda (base)
-                  (= 1 (mod (expt base (1- number)) number)))
-              (generate-random-numbers number))))))
+            (mapcar #'(lambda (base)
+                        (= 1 (mod (expt base (1- number)) number)))
+                    (generate-random-numbers number))))))
 
 ;;; Functional tools
 
