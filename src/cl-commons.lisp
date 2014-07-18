@@ -51,8 +51,10 @@
              (cond
                ((= (length numbers) amount)
                 numbers)
+               ((and (<= 1 current) (< current bound))
+                (recur (random (1- bound)) (cons current numbers)))
                (t
-                (recur (random (1- bound)) (cons (1+ current) numbers)))))) ; 1+ to avoid zeros in result list
+                (recur (random (1- bound)) numbers)))))
     (recur (random (1- bound)) nil)))
 
 ;;; Functional tools
