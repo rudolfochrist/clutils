@@ -10,6 +10,4 @@
   :description "Personal Common Lisp utilities"
   :class :package-inferred-system
   :defsystem-depends-on (:asdf-package-system)
-  :depends-on (:clutils/math
-               :clutils/functional
-               :clutils/strings))
+  :depends-on (:clutils/all))
