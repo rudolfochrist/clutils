@@ -1,6 +1,7 @@
 (in-package :cl-user)
 (defpackage :clutils/strings
-  (:use :cl)
+  (:use :cl
+        :clutils/functional)
   (:export :string-trim-whitespace
            :string-append
            :string-join))

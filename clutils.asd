@@ -1,5 +1,3 @@
-
-
 (in-package :cl-user)
 (defpackage :clutils-asd
   (:use :cl :asdf))
@@ -11,7 +9,7 @@
   :version "0.1"
   :description "Personal Common Lisp utilities"
   :class :package-inferred-system
-  :defsystem-depends-on (:asdf:package-system)
+  :defsystem-depends-on (:asdf-package-system)
   :depends-on (:clutils/math
                :clutils/functional
                :clutils/strings))

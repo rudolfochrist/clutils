@@ -1,10 +1,10 @@
 (in-package :cl-user)
 (defpackage :clutils/math
   (:use :cl)
-  (:use :average
-        :median
-        :generate-random-numbers
-        :primep))
+  (:export :average
+           :median
+           :generate-random-numbers
+           :primep))
 
 (in-package :clutils/math)
 
