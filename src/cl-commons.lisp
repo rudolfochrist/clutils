@@ -19,54 +19,18 @@
   "Splits a string in it's charachters."
   (map 'list #'identity string))
 
+(defun string-trim-whitespace (string)
+  (string-trim '(#\Space #\Tab #\Newline) string))
+
 (defun string-append (&rest args)
   "Appends strings"
   (apply (partial #'concatenate 'string) args))
-
-(defun average (elements)
-  (/ (apply #'+ elements) (length elements)))
-
-(defun string-trim-whitespace (string)
-  (string-trim '(#\Space #\Tab #\Newline) string))
 
 (defun string-join (list &key (delimiter " "))
   (string-trim-whitespace (reduce #'(lambda (concatenated current)
                (concatenate 'string concatenated delimiter (princ-to-string current)))
            (cdr list)
            :initial-value (princ-to-string (car list)))))
-
-(defun median (elements)
-  "Determines the median of the given elements. Elements MUST be a sorted list."
-  (let* ((amount (length elements))
-         (index (floor (/ amount 2))))
-   (if (evenp amount)
-       (average (list (nth  index elements)
-                (nth (1- index) elements)))
-       (nth index elements))))
-
-(defun generate-random-numbers (bound &key (amount 3))
-  "Generates a list of random number. Each number n is int the range 1 <= n < bound. 
-:amount specifies how many random numbers should be generated"
-  (labels ((recur (current numbers)
-             (cond
-               ((= (length numbers) amount)
-                numbers)
-               ((and (<= 1 current) (< current bound))
-                (recur (random (1- bound)) (cons current numbers)))
-               (t
-                (recur (random (1- bound)) numbers)))))
-    (recur (random (1- bound)) nil)))
-
-(defun primep (number)
-  "Fermat primality test"
-  (cond 
-    ((= number 1) nil)
-    ((or (= number 2) (= number 3)) t)
-    (t
-     (every #'identity 
-            (mapcar #'(lambda (base)
-                        (= 1 (mod (expt base (1- number)) number)))
-                    (generate-random-numbers number))))))
 
 ;;; Functional tools
 
@@ -92,4 +56,3 @@
 
 (defun partial-right (fn &rest partial-args)
   (apply #'partial (flip fn) partial-args))
-
