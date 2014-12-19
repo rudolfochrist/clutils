@@ -20,3 +20,14 @@
                (concatenate 'string concatenated delimiter (princ-to-string current)))
            (cdr list)
            :initial-value (princ-to-string (car list)))))
+
+(defun string-split (string &key seperator)
+  (let ((string-in-chars (map 'list #'identity string)))
+    (if seperator
+        (nreverse (mapcar (compose #'string-join #'nreverse)
+                 (reduce #'(lambda (result item)
+                             (if (equal item seperator)
+                                 (cons nil result)
+                                 (cons (cons item (car result)) (cdr result))))
+                         string-in-chars :initial-value '())))
+        string-in-chars)))
