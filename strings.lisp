@@ -34,3 +34,12 @@
                                  (cons (cons item (car result)) (cdr result))))
                          string-in-chars :initial-value '())))
         string-in-chars)))
+
+(defun string-starts-with-p (string prefix)
+  "Tests if string has given prefix."
+  (when (< (length prefix) (length string))
+    (equal prefix (subseq string 0 (length prefix)))))
+
+(defun string-ends-with-p (string suffix)
+  "Tests if string has given suffix"
+  (string-starts-with-p (reverse string) (reverse suffix)))
