@@ -9,6 +9,7 @@
 (in-package :clutils/strings)
 
 (defun string-trim-whitespace (string)
+  "Strips white"
   (string-trim '(#\Space #\Tab #\Newline) string))
 
 (defun string-append (&rest args)
@@ -16,12 +17,14 @@
   (apply (partial #'concatenate 'string) args))
 
 (defun string-join (list &key (delimiter " "))
+  "Joins a list of strings together"
   (string-trim-whitespace (reduce #'(lambda (concatenated current)
                (concatenate 'string concatenated delimiter (princ-to-string current)))
            (cdr list)
            :initial-value (princ-to-string (car list)))))
 
 (defun string-split (string &key seperator)
+  "Splits a string by provided seperator. If no seperator has been given the string is split into his characters."
   (let ((string-in-chars (map 'list #'identity string)))
     (if seperator
         (nreverse (mapcar (compose #'string-join #'nreverse)
