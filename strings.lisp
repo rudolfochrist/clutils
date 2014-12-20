@@ -15,7 +15,7 @@
 (in-package :clutils/strings)
 
 (defun string-trim-whitespace (string)
-  "Strips white"
+  "Strips whitespace"
   (string-trim '(#\Space #\Tab #\Newline) string))
 
 (defun string-append (&rest args)
