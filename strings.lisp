@@ -43,3 +43,20 @@
 (defun string-ends-with-p (string suffix)
   "Tests if string has given suffix"
   (string-starts-with-p (reverse string) (reverse suffix)))
+
+(defun file-to-strings (filespec)
+  "Reads the file, line by line, to strings."
+  (with-open-file (stream filespec)
+    (loop :for line = (read-line stream nil nil)
+       :while line
+       :collect line)))
+
+(defun file-to-string (filespec)
+  "Reads a file into a string"
+  (string-join (file-to-strings filespec)
+               :delimiter (princ-to-string #\Newline)))
+
+(defun string-to-file (string filespec &key (format-string "~A"))
+  "Writes a string to a file at filespec"
+  (with-open-file (stream filespec :direction :output :if-exists :supersede)
+    (format stream format-string string)))
