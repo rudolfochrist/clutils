@@ -2,16 +2,14 @@
 
 My personal Common Lisp utilities
 
-** Description
+* Description
 
-** TODOs
+** Strings
 
-- [] change name globaly
-- [] document functions
-- [] split packages by topic
-- [] make system like http://davazp.net/2014/11/26/modern-library-with-asdf-and-package-inferred-system.html
-- [] adjust quicklisp local project reference
-- [] add string-starts-with-p
-- [] add string-ends-with-p
-- [] add string-join and string-split
-- [] add file-to-string and string-to-file
+** Functional
+
+** Math
+
+* License
+
+See [[file:LICENSE][LICENSE]].
