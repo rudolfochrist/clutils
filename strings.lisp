@@ -63,6 +63,6 @@
                :delimiter (princ-to-string #\Newline)))
 
 (defun string-to-file (string filespec &key (format-string "~A"))
-  "Writes a string to a file at filespec"
+  "Writes a string to a file at filespec. Supersedes if exists."
   (with-open-file (stream filespec :direction :output :if-exists :supersede)
     (format stream format-string string)))

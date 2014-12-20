@@ -2,13 +2,33 @@
 
 My personal Common Lisp utilities
 
-* Description
+* Features
 
 ** Strings
 
+- /string-trim-whitespace/: trims leading and trailing whitespace
+- /string-append/
+- /string-join/
+- /string-split/
+- /string-starts-with-p/: checks for prefix
+- /string-ends-with-p/: checks for suffix
+- /file-to-strings/: reads in a file and adds each line to the resulting list
+- /file-to-string/
+- /string-to-file/: supersedes the file at given filespec
+
 ** Functional
 
+- /compose/
+- /partial/
+- /flip/: reverses the arguments list of a function
+- /partial-right/: partially applies a function from the right
+
 ** Math
+
+- /average/
+- /median/
+- /generate-random-numbers/: generates a list of random numbers up to bound
+- /primep/: checks for prime numbers (Fermat primality)
 
 * License
 
