@@ -18,5 +18,14 @@
     (nreverse (recu lst '()))))
 
 (defmacro with (vars &body body)
+  "Binds values to names.
+Example:
+(with (a 1
+       b 2)
+ (+ a b))
+;=> 3
+
+The `with' macro is actually a paren-less `let'.
+"
   `(let ,(pairs vars)
      ,@body))
