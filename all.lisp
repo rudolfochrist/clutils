@@ -4,4 +4,5 @@
   (:use :cl)
   (:use-reexport :clutils/functional
                  :clutils/math
-                 :clutils/strings))
+                 :clutils/strings
+                 :clutils/macros))
