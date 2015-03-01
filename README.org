@@ -1,6 +1,6 @@
 *  clutils
 
-My personal Common Lisp utilities
+My personal Common Lisp utilities.
 
 * Features
 
