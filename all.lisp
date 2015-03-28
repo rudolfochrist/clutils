@@ -5,4 +5,5 @@
   (:use-reexport :clutils/functional
                  :clutils/math
                  :clutils/strings
-                 :clutils/macros))
+                 :clutils/macros
+                 :clutils/lists))
