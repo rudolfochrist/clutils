@@ -13,4 +13,4 @@ clutils.texinfo: *.lisp *.asd
 	--eval '(sb-texinfo:document-package :clutils :output-file "clutils.texinfo")'
 
 docs: clutils.texinfo
-	makeinfo --no-`split $<
+	makeinfo --no-split $<
