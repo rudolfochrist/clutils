@@ -8,17 +8,17 @@
 
 (in-package :clutils/math)
 
-(defun average (elements)
+(defun average (&rest elements)
   (/ (apply #'+ elements) (length elements)))
 
-(defun median (elements)
+(defun median (&rest elements)
   "Determines the median of the given elements. Elements MUST be a sorted list."
   (let* ((amount (length elements))
          (index (floor (/ amount 2))))
-   (if (evenp amount)
-       (average (list (nth  index elements)
-                (nth (1- index) elements)))
-       (nth index elements))))
+    (if (evenp amount)
+        (average (list (nth  index elements)
+                       (nth (1- index) elements)))
+        (nth index elements))))
 
 (defun generate-random-numbers (bound &key (amount 3))
   "Generates a list of random number. Each number n is int the range 1 <= n < bound.
