@@ -2,10 +2,13 @@
 (defpackage :clutils/strings
   (:use :cl
         :clutils/functional)
+  (:import-from :split-sequence
+                :split-sequence)
   (:export :string-trim-whitespace
            :string-append
            :string-join
            :string-split
+           :string-split-whitespace
            :string-starts-with-p
            :string-ends-with-p
            :file-to-strings
@@ -29,17 +32,13 @@
                                   (cdr list)
                                   :initial-value (princ-to-string (car list)))))
 
-(defun string-split (string &key seperator)
-  "Splits a string by provided seperator. If no seperator has been given the string is split into his characters."
-  (let ((string-in-chars (map 'list #'identity string)))
-    (if seperator
-        (nreverse (mapcar (compose #'string-join #'nreverse)
-                          (reduce #'(lambda (result item)
-                                      (if (equal item seperator)
-                                          (cons nil result)
-                                          (cons (cons item (car result)) (cdr result))))
-                                  string-in-chars :initial-value '())))
-        string-in-chars)))
+(defun string-split (string)
+  "Splits a string into it's characters."
+  (map 'list #'identity string))
+
+(defun string-split-whitespace (string)
+  "Splits a string on whitespace."
+  (split-sequence #\Space string :test #'char-equal :remove-empty-subseqs t))
 
 (defun string-starts-with-p (string prefix)
   "Tests if string has given prefix."
