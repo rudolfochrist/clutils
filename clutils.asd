@@ -11,7 +11,8 @@
   :description "Personal Common Lisp utilities"
   :class :package-inferred-system
   :defsystem-depends-on (:asdf-package-system)
-  :depends-on (:clutils/all)
+  :depends-on (:clutils/all
+               :split-sequence)
   :in-order-to ((test-op (load-op :clutils/test)))
   :perform (test-op (o c) (symbol-call :1am :run)))
 
