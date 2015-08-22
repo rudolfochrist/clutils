@@ -2,7 +2,9 @@
 (in-package :cl-user)
 (defpackage :clutils/macros
   (:use :cl)
-  (:export :with))
+  (:export :with
+           :xor
+           :boolean-equal))
 
 (in-package :clutils/macros)
 
@@ -19,13 +21,20 @@
 
 (defmacro with (vars &body body)
   "Binds values to names.
-Example:
-(with (a 1
-       b 2)
- (+ a b))
-;=> 3
-
 The `with' macro is actually a paren-less `let'.
 "
   `(let ,(pairs vars)
      ,@body))
+
+(defmacro xor (&rest args)
+  "The logical exclusive or."
+  (if (null args)
+      nil
+      (let ((g (gensym)))
+        `(let ((,g (xor ,@ (cdr args))))
+           (and (or ,(car args) ,g)
+                (not (and ,(car args) ,g)))))))
+
+(defmacro boolean-equal (&rest args)
+  "Checks for equivalence. Actually this is a negated `xor'."
+  `(not (xor ,@args)))
