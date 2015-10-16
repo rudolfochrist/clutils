@@ -13,7 +13,8 @@
            :string-ends-with-p
            :file-to-strings
            :file-to-string
-           :string-to-file))
+           :string-to-file
+           :with-file-to-string))
 
 (in-package :clutils/strings)
 
@@ -65,3 +66,8 @@
   "Writes a string to a file at filespec. Supersedes if exists."
   (with-open-file (stream filespec :direction :output :if-exists :supersede)
     (format stream format-string string)))
+
+(defmacro with-file-to-string ((var filespec) &body body)
+  "Binds the contents of the file under FILESPEC to VAR."
+  `(let ((,var ,(file-to-string filespec)))
+     ,@body))
