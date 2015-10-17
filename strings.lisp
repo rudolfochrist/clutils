@@ -69,5 +69,5 @@
 
 (defmacro with-file-to-string ((var filespec) &body body)
   "Binds the contents of the file under FILESPEC to VAR."
-  `(let ((,var ,(file-to-string filespec)))
+  `(let ((,var (file-to-string ,filespec)))
      ,@body))
