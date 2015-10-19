@@ -50,17 +50,13 @@
   "Tests if string has given suffix"
   (string-starts-with-p (reverse string) (reverse suffix)))
 
-(defun file-to-strings (filespec)
-  "Reads the file, line by line, to strings."
-  (with-open-file (stream filespec)
-    (loop :for line = (read-line stream nil nil)
-       :while line
-       :collect line)))
-
 (defun file-to-string (filespec)
   "Reads a file into a string"
-  (string-join (file-to-strings filespec)
-               :delimiter (princ-to-string #\Newline)))
+  (with-open-file (file filespec)
+    (with-output-to-string (string)
+      (loop for line = (read-line file nil 'eof)
+         until (eq line 'eof)
+         do (print line string)))))
 
 (defun string-to-file (string filespec &key (format-string "~A"))
   "Writes a string to a file at filespec. Supersedes if exists."
