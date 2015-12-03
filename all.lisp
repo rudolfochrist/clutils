@@ -6,4 +6,5 @@
                  :clutils/math
                  :clutils/strings
                  :clutils/macros
-                 :clutils/lists))
+                 :clutils/lists
+                 :clutils/packages))
