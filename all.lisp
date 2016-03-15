@@ -7,4 +7,5 @@
                  :clutils/strings
                  :clutils/macros
                  :clutils/lists
-                 :clutils/packages))
+                 :clutils/packages
+                 :clutils/project))

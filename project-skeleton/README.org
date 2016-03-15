@@ -1,0 +1,11 @@
+#+title: <% @var name %>
+
+* Installation
+
+* Usage
+
+* License
+
+Copyright (c) <%= (local-time:timestamp-year (local-time:now)) %> <% @var author %> (<% @var email %>)
+
+Released under the <% @var license %> license.
