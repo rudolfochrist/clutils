@@ -3,6 +3,7 @@
 (in-package :cl-user)
 (defpackage #:clutils/project
   (:use :cl)
+  (:import-from :cl-project)
   (:export
    #:make-project))
 

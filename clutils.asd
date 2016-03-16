@@ -12,8 +12,7 @@
   :class :package-inferred-system
   :defsystem-depends-on (:asdf-package-system)
   :depends-on (:clutils/all
-               :split-sequence
-               :cl-project)
+               :split-sequence)
   :in-order-to ((test-op (load-op :clutils/test)))
   :perform (test-op (o c) (symbol-call :1am :run)))
 

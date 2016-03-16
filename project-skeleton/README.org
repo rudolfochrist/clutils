@@ -1,5 +1,7 @@
 #+title: <% @var name %>
 
+<% @var description %>
+
 * Installation
 
 * Usage
