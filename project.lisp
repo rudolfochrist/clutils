@@ -21,8 +21,27 @@
                         (email "rudolfo.christ@gmail.com")
                         (license "MIT")
                         depends-on
-                        (with-coveralls t))
+                        (with-coveralls t)
+                        (with-source-control t))
   (let ((cl-project:*skeleton-directory* *custom-project-skeleton*))
-    (cl-project:make-project path :name name :description description :author author
-                             :email email :license license :depends-on depends-on
-                             :with-coveralls with-coveralls)))
+    (cl-project:make-project path
+                             :name name
+                             :description description
+                             :author author
+                             :email email
+                             :license license
+                             :depends-on depends-on
+                             :with-coveralls with-coveralls))
+  ;; add license file
+  (let ((template-path (merge-pathnames (format nil "licenses/~A.license" (string-downcase license))
+                                        *custom-project-skeleton*))
+        (project-name (or name
+                          (car (last (pathname-directory path))))))
+    (with-open-file (license-file (merge-pathnames #p"LICENSE" path) :direction :output :if-exists :supersede)
+      (format t "writing ~A" (namestring license-file))
+      (format license-file "~A"
+              (cl-emb:execute-emb template-path
+                                 :env (list :name project-name
+                                            :description description
+                                            :author author)))))
+  :OK)

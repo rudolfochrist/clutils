@@ -6,11 +6,14 @@
   :version "0.1"
   :author "<% @var author %>"
   :mailto "<% @var email %>"
-  :license "<% @var license %>"
+  :license "<% @var license %>"<% @if homepage %>
+  :homepage "<% @var homepage %>"<% @endif %><% @if with-source-control %>
+  :source-control (:git "git@github.com:rudolfochrist/<% @var name %>.git")
+  :bug-tracker "https://github.com/rudolfochrist/<% @var name %>/issues"<% @endif %>
   :depends-on (<% (format t "~{:~(~A~)~^~%               ~}"
                           (getf env :depends-on)) %>)
   :components ((:module "src"
                         :components
-                        ((:file "<% @var name %>"))))
+                        ((:file "package"))))
   :description "<% @var description %>"
   :in-order-to ((test-op (load-op :<% @var name %>-test))))

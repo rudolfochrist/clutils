@@ -1,13 +1,19 @@
-#+title: <% @var name %>
+* NAME
 
-<% @var description %>
+<% @var name %> - <% @var description %>
 
-* Installation
+* SYNOPSIS
 
-* Usage
+* DESCRIPTION
 
-* License
+** FUNCTIONS
+
+* AUTHOR
+
+* COPYRIGHT
 
 Copyright (c) <%= (local-time:timestamp-year (local-time:now)) %> <% @var author %> (<% @var email %>)
 
 Released under the <% @var license %> license.
+
+* SEE ALSO
