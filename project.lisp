@@ -23,7 +23,8 @@
                         depends-on
                         (with-coveralls t)
                         (with-source-control t))
-  (let ((cl-project:*skeleton-directory* *custom-project-skeleton*))
+  (let ((cl-project:*skeleton-directory* (merge-pathnames "project/"
+                                                          *custom-project-skeleton*)))
     (cl-project:make-project path
                              :name name
                              :description description
@@ -31,7 +32,8 @@
                              :email email
                              :license license
                              :depends-on depends-on
-                             :with-coveralls with-coveralls))
+                             :with-coveralls with-coveralls
+                             :with-source-control with-source-control))
   ;; add license file
   (let ((template-path (merge-pathnames (format nil "licenses/~A.license" (string-downcase license))
                                         *custom-project-skeleton*))

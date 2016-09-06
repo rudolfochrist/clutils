@@ -3,7 +3,7 @@
 (in-package :asdf-user)
 
 (defsystem #:<% @var name %>
-  :version "0.1"
+  :version "0.1.0"
   :author "<% @var author %>"
   :mailto "<% @var email %>"
   :license "<% @var license %>"<% @if homepage %>
@@ -13,7 +13,6 @@
   :depends-on (<% (format t "~{:~(~A~)~^~%               ~}"
                           (getf env :depends-on)) %>)
   :components ((:module "src"
-                        :components
-                        ((:file "package"))))
+                :components ((:file "package"))))
   :description "<% @var description %>"
-  :in-order-to ((test-op (load-op :<% @var name %>-test))))
+  :in-order-to ((test-op (test-op :<% @var name %>-test))))

@@ -10,8 +10,7 @@
   :depends-on (:fiveam
                :<% @var name %>)
   :components ((:module "t"
-                        :components
-                        ((:file "<% @var name %>"))))
-  :perform (load-op :after (op c)
+                :components ((:file "<% @var name %>"))))
+  :perform (test-op (op c)
                     (asdf:clear-system c)
-                    (5am:run! :<% @var name %>)))
+                    (uiop:symbol-call :5am :run! :<% @var name %>)))

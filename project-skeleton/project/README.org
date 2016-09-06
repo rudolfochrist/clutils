@@ -1,0 +1,33 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil
+
+* NAME
+
+<% @var name %> --- <% @var description %>
+
+* VERSION
+
+#+BEGIN_SRC lisp :exports results
+(format nil "Version ~A"
+        (asdf:component-version (asdf:find-system :<% @var name %>)))
+#+END_SRC
+
+* SYNOPSIS
+
+* DESCRIPTION
+
+** FUNCTIONS
+
+** VARIABLES
+
+* AUTHOR
+
+<% @var author %> ([[mailto:<% @var email %>]])
+
+* COPYRIGHT
+
+Copyright (c) <%= (local-time:timestamp-year (local-time:now)) %> <% @var author %> (<% @var email %>)
+
+Released under the <% @var license %> license.
+
+* SEE ALSO
