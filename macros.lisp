@@ -3,7 +3,7 @@
 (defpackage :clutils/macros
   (:use :cl)
   (:export :with
-           :xor
+   #-clisp :xor
            :boolean-equal))
 
 (in-package :clutils/macros)
