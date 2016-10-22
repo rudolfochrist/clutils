@@ -25,15 +25,28 @@
                         (with-source-control t))
   (let ((cl-project:*skeleton-directory* (merge-pathnames "project/"
                                                           *custom-project-skeleton*)))
-    (cl-project:make-project path
-                             :name name
-                             :description description
-                             :author author
-                             :email email
-                             :license license
-                             :depends-on depends-on
-                             :with-coveralls with-coveralls
-                             :with-source-control with-source-control))
+    (loop
+       (restart-case (if (probe-file path)
+                         (error "Path ~S already exists!" path)
+                         (return))
+         (overwrite ()
+           :report "Use path anyway and overwrite existing files."
+           (return))
+         (new-path (new-path)
+           :report "Use a different path."
+           :interactive (lambda ()
+                          (princ "Path> " *query-io*)
+                          (list (read *query-io*)))
+           (setf path new-path))))) 
+  (cl-project:make-project path
+                           :name name
+                           :description description
+                           :author author
+                           :email email
+                           :license license
+                           :depends-on depends-on
+                           :with-coveralls with-coveralls
+                           :with-source-control with-source-control)
   ;; add license file
   (let ((template-path (merge-pathnames (format nil "licenses/~A.license" (string-downcase license))
                                         *custom-project-skeleton*))
