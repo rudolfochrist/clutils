@@ -21,6 +21,7 @@ env:
     - LISP=alisp
 
 matrix:
+  fast_finish: true
   allow_failures:
     - env: LISP=clisp
     - env: LISP=abcl
@@ -35,9 +36,19 @@ cache:
   directories:
     - $HOME/.roswell
     - $HOME/.config/common-lisp
+    - $HOME/lisp
 
 script:
-  - ./ci-run-tests.ros
+  - ros
+    -s <% @var name %>-test<% @if with-coveralls %>
+    -s cl-coveralls<% @endif %>
+    -e '(setf 5am:*debug-on-error* t
+              5am:*debug-on-failure* t)'<% @if with-coveralls %>
+    -e '(coveralls:with-coveralls (:exclude (list "t"))
+          (unless (<% @var name %>-test:run)
+            (uiop:quit 1)))'<% @else %>
+    -e '(unless (<% @var name %>-test:run)
+          (uiop:quit 1))'<% @endif %>
 
 notifications:
   email:

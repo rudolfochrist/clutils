@@ -10,8 +10,7 @@
 (in-package :clutils/project)
 
 (defvar *custom-project-skeleton*
-  #.(merge-pathnames "project-skeleton/"
-                     (asdf:system-source-directory :clutils)))
+  (asdf:system-relative-pathname :clutils "skeleton/")) 
 
 (defun  make-project (path
                       &key
@@ -26,27 +25,27 @@
   (let ((cl-project:*skeleton-directory* (merge-pathnames "project/"
                                                           *custom-project-skeleton*)))
     (loop
-       (restart-case (if (probe-file path)
-                         (error "Path ~S already exists!" path)
-                         (return))
-         (overwrite ()
-           :report "Use path anyway and overwrite existing files."
-           (return))
-         (new-path (new-path)
-           :report "Use a different path."
-           :interactive (lambda ()
-                          (princ "Path> " *query-io*)
-                          (list (read *query-io*)))
-           (setf path new-path))))) 
-  (cl-project:make-project path
-                           :name name
-                           :description description
-                           :author author
-                           :email email
-                           :license license
-                           :depends-on depends-on
-                           :with-coveralls with-coveralls
-                           :with-source-control with-source-control)
+      (restart-case (if (probe-file path)
+                        (error "Path ~S already exists!" path)
+                        (return))
+        (overwrite ()
+          :report "Use path anyway and overwrite existing files."
+          (return))
+        (new-path (new-path)
+          :report "Use a different path."
+          :interactive (lambda ()
+                         (princ "Path> " *query-io*)
+                         (list (read *query-io*)))
+          (setf path new-path))))
+    (cl-project:make-project path
+                             :name name
+                             :description description
+                             :author author
+                             :email email
+                             :license license
+                             :depends-on depends-on
+                             :with-coveralls with-coveralls
+                             :with-source-control with-source-control))
   ;; add license file
   (let ((template-path (merge-pathnames (format nil "licenses/~A.license" (string-downcase license))
                                         *custom-project-skeleton*))

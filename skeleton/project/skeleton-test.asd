@@ -13,4 +13,4 @@
                 :components ((:file "<% @var name %>"))))
   :perform (test-op (op c)
                     (asdf:clear-system c)
-                    (uiop:symbol-call :5am :run! :<% @var name %>)))
+                    (uiop:symbol-call :<% @var name %>-test :run)))

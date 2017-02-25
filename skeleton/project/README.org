@@ -1,6 +1,8 @@
 #+STARTUP: showall
 #+OPTIONS: toc:nil
 
+# This is just the template README. Export to markdown to get the real README.
+
 * NAME
 
 <% @var name %> --- <% @var description %>
@@ -23,10 +25,17 @@
 * AUTHOR
 
 <% @var author %> ([[mailto:<% @var email %>]])
-
+<% (if (member (getf env :license) '("BSD" "MIT") :test #'string=)
+     (format t "
 * COPYRIGHT
 
-Copyright (c) <%= (local-time:timestamp-year (local-time:now)) %> <% @var author %> (<% @var email %>)
+Copyright (c) ~D ~A (~A)"
+     (local-time:timestamp-year (local-time:now))
+     (getf env :author)
+     (getf env :email))
+     (format t "
+* LICENSE
+")) %>
 
 Released under the <% @var license %> license.
 
