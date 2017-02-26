@@ -13,6 +13,7 @@
   :depends-on (<% (format t "~{:~(~A~)~^~%               ~}"
                           (getf env :depends-on)) %>)
   :components ((:module "src"
-                :components ((:file "package"))))
+                :components ((:file "package")
+                             (:file "<% @var name %>"))))
   :description "<% @var description %>"
   :in-order-to ((test-op (test-op :<% @var name %>-test))))

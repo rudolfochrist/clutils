@@ -3,8 +3,13 @@
 (in-package :cl-user)
 (defpackage #:<% @var name %>-test
   (:use :cl
-        :fiveam
         :<% @var name %>)
+  (:import-from :fiveam
+                #:def-suite
+                #:in-suite
+                #:run!
+                #:is
+                #:test)
   (:export #:run))
 
 (in-package :<% @var name %>-test)
