@@ -1,6 +1,6 @@
 (in-package :cl-user)
 (uiop/package:define-package :clutils/all
-    (:nicknames :clutils)
+    (:nicknames :clutils :clu)
   (:use :cl)
   (:use-reexport
    :clutils/functional
