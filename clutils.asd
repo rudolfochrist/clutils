@@ -14,7 +14,8 @@
   :depends-on (:clutils/all
                :split-sequence
                :cl-emb
-               :local-time)
+               :local-time
+               :uiop)
   :in-order-to ((test-op (load-op :clutils/test)))
   :perform (test-op (o c) (symbol-call :1am :run)))
 
