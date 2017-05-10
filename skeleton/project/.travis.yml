@@ -36,6 +36,8 @@ cache:
   directories:
     - $HOME/.roswell
     - $HOME/.config/common-lisp
+    - $HOME/.cache/common-lisp
+    - $HOME/quicklisp
     - $HOME/lisp
 
 script:
