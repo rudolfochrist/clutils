@@ -19,7 +19,6 @@ Uses the Fischer-Yates algorithm for this."
                     (elt sequence j))
         finally (return sequence)))
 
-
 (defun shuffle (sequence)
   "Shuffles the SEQUENCE randomly."
   (nshuffle (copy-seq sequence)))
