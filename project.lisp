@@ -52,7 +52,6 @@
                                           *custom-project-skeleton*))
           (project-name (or name
                             (first (last (pathname-directory dir-path))))))
-      (break)
       (with-open-file (license-file (merge-pathnames #p"LICENSE" dir-path) :direction :output :if-exists :supersede)
         (format t "writing ~A" (namestring license-file))
         (format license-file "~A"
